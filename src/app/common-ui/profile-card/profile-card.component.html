@@ -1,10 +1,26 @@
+@if (profile) {
 <div class="profile-card">
     <div class="avatar-name">
-        <img src="/public/images.svg" alt="avatar" class="profile-card__avatar">
+        <img [src]="profile.avatarUrl | imageUrl" alt="avatar" class="profile-card__avatar">
 
         <div class="profile-card__name">
-            <strong>Райан Гослинг</strong>
-            <span>ryan</span>
+            <strong class="h6">{{ profile.firstName }} {{ profile.lastName }}</strong>
+            <span class="subtitle">{{ profile.username }}</span>
         </div>
     </div>
+
+    <div class="profile-card__description">{{ profile.description }}</div>
+
+    <div class="profile-card__tags">
+        @for (skill of profile.stack; track skill) {
+        <div class="skill-tag">{{ skill }}</div>
+        }
+    </div>
+
+    <div class="profile_card__action-buttons">
+        <button class="button">Подписаться</button>
+    </div>
 </div>
+} @else {
+<h1>Профиль не найден</h1>
+}
